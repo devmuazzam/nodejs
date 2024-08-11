@@ -8,6 +8,20 @@ const users = require("./MOCK_DATA.json")
 const app = express()
 
 app.use(express.urlencoded({extended: false}))
+app.use(express.json())
+
+// Added middlewares which acts as pipeline for the request-response cycle
+app.use((req, res, next) => {
+    req.headers.token = "123"
+    console.log("Entered in first middleware")
+    next()
+})
+
+app.use((req, res, next) => {
+    // token value set in middleware 1 passed down to the next one
+    console.log(`Entered in second middleware and passed data: ${req.headers.token}`)
+    next()
+})
 
 // Servers should be made hybrid means 
 // they should be able to respond with different formats for data against same URL
