@@ -40,6 +40,9 @@ app.get("/api/users", (req, res) => {
         if(err){
             res.status(404)
         }else{
+            // It is best practice to user X as preceding to the headers name which 
+            // indicates that it's a custom header and not a built in 
+            res.setHeader("X-custom-header", "XYZ")
             res.status(200).json(JSON.parse(data))
         }
     })
