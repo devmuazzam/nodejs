@@ -3,7 +3,7 @@
 const express = require("express")
 const fs = require("fs")
 const users = require("./MOCK_DATA.json")
-
+const PORT = 8000
 
 const app = express()
 
@@ -86,4 +86,4 @@ app.route("/api/users/:user_id").get((req, res) => {
     })
 })
 
-app.listen(8000, () => console.log("app listening on port 8000"))
+app.listen(PORT, () => console.log("app listening on port 8000"))
